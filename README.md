@@ -8,12 +8,13 @@ This is a simple coding quiz. This is to test your coding skills and see what yo
 
 ## Application Link
 
-https://kwaspek104.github.io/Kasper_Koding_Quiz/
+https://kwaspek104.github.io/Coding_Quiz/
 
 ## Image 
 
-![](Password-demo.png)
+![](./Assets/img/Koding_Quiz.png)
 
 ## Liscence 
 
 Copyright (c) Kasper Kuzmicki. All rights reserved.
+
