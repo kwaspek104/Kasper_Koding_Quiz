@@ -12,7 +12,7 @@ https://kwaspek104.github.io/Coding_Quiz/
 
 ## Image 
 
-![](Password-demo.png)
+![](./Assets/img/Koding_Quiz.png)
 
 ## Liscence 
 
