@@ -1,110 +1,135 @@
-var timeEl = document.querySelector("#timer");
-var buttonEl = document.querySelector("#begin");
-var questionGameEl = document.querySelector("#question-game");
-var questionLocations = document.querySelector("#question-locations");
-var questionTitles = document.querySelector("#question-titles");
-var buttonLocations = document.querySelector("#button-locations");
-var questionsEl = [
+let timeEl = document.querySelector("#timer");
+let buttonEl = document.querySelector("#begin");
+let questionGameEl = document.querySelector("#question-game");
+let questionLocations = document.querySelector("#question-locations");
+let questionTitles = document.querySelector("#question-titles");
+let buttonLocations = document.querySelector("#button-locations");
+let rightWrong = document.querySelector("#right-wrong");
+let gameOver = document.querySelector("#game-over");
+let finalscore =  document.querySelector("#final-score");
+questionLocations.style.display = "none";
+gameOver.style.display = "none";
+let questionsEl = [
     {
         title: "Commonly used data types DO NOT include:",
         answers: [
-            "strings",
-            "booleans",
-            "alerts",
-            "numbers"
+            "Strings",
+            "Booleans",
+            "Alerts",
+            "Numbers"
         ],
-        correctAnswer: "alerts"
+        correctAnswer: "Alerts"
     },
     {
         title: "The condition in an if / else statement is enclosed within ______.",
         answers: [
-            "quotes",
-            "curly brackets",
-            "parantheses",
-            "square brackets"
+            "Quotes",
+            "Curly Brackets",
+            "Parantheses",
+            "Square Brackets"
         ],
-        correctAnswer: "parantheses"
+        correctAnswer: "Parantheses"
     },
     {
         title: "Arrays in Javascript can be used to store ____.",
         answers: [
-            "numbers and strings",
-            "other arrays",
-            "booleans",
-            "all of the above"
+            "Numbers and Strings",
+            "Other Arrays",
+            "Booleans",
+            "All of the Above"
         ],
-        correctAnswer: "all of the above"
+        correctAnswer: "All of the Above"
     },
     {
         title: "String values must be enclosed within ______.",
         answers: [
-            "commas",
-            "curly brackets",
-            "quotes",
-            "parenthesis"
+            "Commas",
+            "Curly Brackets",
+            "Quotes",
+            "Parenthesis"
         ],
-        correctAnswer: "quotes"
+        correctAnswer: "Quotes"
     },
     {
         title: "A very useful tool for used during development and debugging for printing content to the debugger is: ",
         answers: [
             "Javascript",
-            "terminal / bash",
-            "for loops",
-            "console log"
+            "Terminal / Bash",
+            "For Loops",
+            "Console Log"
         ],
-        correctAnswer: "console log"
+        correctAnswer: "Console Log"
     },
 ];
 
-var questionIndex = 0;
-var secondsLeft = 60;
-var penalty = 10;
+let questionIndex = 0;
+let secondsLeft = 60;
 
 
 function startGame() {
     questionGameEl.style.display = "none";
+    questionLocations.style.display = "";
     generateQuestions()
 }
 
 function generateQuestions() {
-    var currentQuestion = questionsEl[questionIndex];
+    if (questionIndex === questionsEl.length) {
+        endQuiz()
+    }
+else {
+    let currentQuestion = questionsEl[questionIndex];
 
     questionTitles.textContent = currentQuestion.title;
 
     buttonLocations.innerHTML = '';
+    rightWrong.textContent = "";
     currentQuestion.answers.forEach(function (choice) {
-        var newButton = document.createElement('button');
+        let newButton = document.createElement('button');
+        newButton.setAttribute("class", "new-button")
         newButton.textContent = `${choice}`;
+        newButton.setAttribute('value', choice);
         newButton.onclick = validateAnswer
         // append each button to buttons element
         buttonLocations.appendChild(newButton)
     })
-
+}
 }
 
 function validateAnswer() {
-    // validate:
-    // wrong = -15 seconds
-    // correct = nothing
+    
+    let userChoice = this.value;
+    let correctAnswer = questionsEl[questionIndex].correctAnswer
+    
+   
+    if (userChoice === correctAnswer) {
+        rightWrong.textContent = "Right!"
+    }
 
-
-    // are there any more questions?
-
+    else {
+        rightWrong.textContent = "Wrong!";
+        secondsLeft -= 10;
+    }
 
     questionIndex++;
-    generateQuestions();
+    setTimeout(function(){
+    generateQuestions()
+    },1000)
+}
 
+function endQuiz() {
+    questionLocations.style.display = "none";
+    gameOver.style.display = "";
+    finalscore.textContent = secondsLeft;
 }
 
 buttonEl.addEventListener("click", function () {
-    var timerInterval = setInterval(function () {
+    let timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Time left:" + secondsLeft;
 
-        if (secondsLeft === 0) {
+        if (secondsLeft === 0 || questionIndex === questionsEl.length) {
             clearInterval(timerInterval);
-            sendMessage();
+            endQuiz()
         }
 
     }, 1000);
