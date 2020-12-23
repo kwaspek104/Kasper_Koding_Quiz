@@ -7,6 +7,10 @@ let buttonLocations = document.querySelector("#button-locations");
 let rightWrong = document.querySelector("#right-wrong");
 let gameOver = document.querySelector("#game-over");
 let finalscore =  document.querySelector("#final-score");
+let submitBtn =  document.querySelector("#submit");
+let userName =  document.querySelector("#name");
+let clearBtn = document.querySelector(".clear");
+let userScores = document.querySelector("#user-scores");
 questionLocations.style.display = "none";
 gameOver.style.display = "none";
 let questionsEl = [
@@ -135,3 +139,8 @@ buttonEl.addEventListener("click", function () {
     }, 1000);
     startGame()
 })
+
+submitBtn.addEventListener("click", function () {
+        localStorage.setItem("Name", userName.value);   
+})
+
