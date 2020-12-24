@@ -141,7 +141,7 @@ buttonEl.addEventListener("click", function () {
 })
 
 submitBtn.addEventListener("click", function () {
-    let userArr = [];
+    let userArr = JSON.parse(localStorage.getItem("Scores"))
     let userInfo = {
         score: 0
     };
