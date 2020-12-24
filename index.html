@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coding Quiz!</title>
+    <link rel="stylesheet" type="text/css" href="./Assets/css/styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Coding Quiz!</title>
-  <link rel="stylesheet" type="text/css" href="./Assets/css/styles.css">
-</head>
+  <body>
+    <div id="timer"></div>
+    <div id="highscores">
+      <a href="Highscores.html">View Highscores</a>
+    </div>
 
-<body>
+    <div id="question-game">
+      <h1>Coding Quiz Challenge</h1>
 
-  <div id="timer"></div>
-  <div id="highscores">
-    <a href="Highscores.html">View Highscores</a>
-  </div>
+      <h2>
+        Welcome to the coding quiz! Each time you click the wrong answer, the
+        timer will decrease by 10 seconds. Your final score will be how much
+        time is left. So you not only have to be smart, you gotta be fast too!
+        Prepare to fail! Muahahaha!
+      </h2>
 
-  <div id="question-game">
+      <button id="begin" type="button">Let's Begin!</button>
+    </div>
 
-    <h1>Coding Quiz Challenge</h1>
+    <div id="question-locations">
+      <div id="question-titles"></div>
+      <div id="button-locations"></div>
+      <div id="right-wrong"></div>
+    </div>
 
-    <h2> Welcome to the coding quiz! Each time you click the wrong answer, the timer will decrease by 10 seconds. Your
-      final score will be how much time is left. So you not only have to be smart, you gotta be fast too! Prepare to
-      fail! Muahahaha! </h2>
-
-    <button id="begin" type="button">Let's Begin!</button>
-
-  </div>
-
-  <div id="question-locations">
-    <div id="question-titles"></div>
-    <div id="button-locations"></div>
-    <div id="right-wrong"></div>
-  </div>
-
-  <div id="game-over">
-    <h2>Game Over!</h2>
-    <h2>Your final score is: <span id="final-score"></span></h2>
-    <h2> Enter your name: <input type="text" id="name"/>
-      <a href='Highscores.html'><button id="submit">Submit</button></a>
-    </h2>
-  </div>
-
-  <script src="./assets/js/script.js"></script>
-</body>
-
+    <div id="game-over">
+      <h2>Game Over!</h2>
+      <h2>Your final score is: <span id="final-score"></span></h2>
+      <h2>
+        Enter your name: <input type="text" id="name" />
+        <a href="Highscores.html"><button id="submit">Submit</button></a>
+      </h2>
+    </div>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
