@@ -8,7 +8,7 @@ This is a simple coding quiz. This is to test your coding skills and see what yo
 
 ## Application Link
 
-https://kwaspek104.github.io/Coding_Quiz/
+https://kwaspek104.github.io/Kasper_Koding_Quiz/
 
 ## Image 
 
