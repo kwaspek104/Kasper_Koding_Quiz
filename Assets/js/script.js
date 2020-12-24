@@ -6,11 +6,13 @@ let questionTitles = document.querySelector("#question-titles");
 let buttonLocations = document.querySelector("#button-locations");
 let rightWrong = document.querySelector("#right-wrong");
 let gameOver = document.querySelector("#game-over");
-let finalscore =  document.querySelector("#final-score");
-let submitBtn =  document.querySelector("#submit");
-let userName =  document.querySelector("#name");
+let finalScore = document.querySelector("#final-score");
+let submitBtn = document.querySelector("#submit");
+let userName = document.querySelector("#name");
 let clearBtn = document.querySelector(".clear");
 let userScores = document.querySelector("#user-scores");
+
+
 questionLocations.style.display = "none";
 gameOver.style.display = "none";
 let questionsEl = [
@@ -80,31 +82,31 @@ function generateQuestions() {
     if (questionIndex === questionsEl.length) {
         endQuiz()
     }
-else {
-    let currentQuestion = questionsEl[questionIndex];
+    else {
+        let currentQuestion = questionsEl[questionIndex];
 
-    questionTitles.textContent = currentQuestion.title;
+        questionTitles.textContent = currentQuestion.title;
 
-    buttonLocations.innerHTML = '';
-    rightWrong.textContent = "";
-    currentQuestion.answers.forEach(function (choice) {
-        let newButton = document.createElement('button');
-        newButton.setAttribute("class", "new-button")
-        newButton.textContent = `${choice}`;
-        newButton.setAttribute('value', choice);
-        newButton.onclick = validateAnswer
-        // append each button to buttons element
-        buttonLocations.appendChild(newButton)
-    })
-}
+        buttonLocations.innerHTML = '';
+        rightWrong.textContent = "";
+        currentQuestion.answers.forEach(function (choice) {
+            let newButton = document.createElement('button');
+            newButton.setAttribute("class", "new-button")
+            newButton.textContent = `${choice}`;
+            newButton.setAttribute('value', choice);
+            newButton.onclick = validateAnswer
+            // append each button to buttons element
+            buttonLocations.appendChild(newButton)
+        })
+    }
 }
 
 function validateAnswer() {
-    
+
     let userChoice = this.value;
     let correctAnswer = questionsEl[questionIndex].correctAnswer
-    
-   
+
+
     if (userChoice === correctAnswer) {
         rightWrong.textContent = "Right!"
     }
@@ -115,15 +117,13 @@ function validateAnswer() {
     }
 
     questionIndex++;
-    setTimeout(function(){
     generateQuestions()
-    },1000)
 }
 
 function endQuiz() {
     questionLocations.style.display = "none";
     gameOver.style.display = "";
-    finalscore.textContent = secondsLeft;
+    finalScore.textContent = secondsLeft;
 }
 
 buttonEl.addEventListener("click", function () {
@@ -141,6 +141,16 @@ buttonEl.addEventListener("click", function () {
 })
 
 submitBtn.addEventListener("click", function () {
-        localStorage.setItem("Name", userName.value);   
+    let userArr = [];
+    let userInfo = {
+        score: 0
+    };
+    userInfo.score = secondsLeft;
+    userInfo.initials = userName.value
+   
+    userArr.push(userInfo)
+    
+    localStorage.setItem("Scores", JSON.stringify(userArr));
 })
+
 
